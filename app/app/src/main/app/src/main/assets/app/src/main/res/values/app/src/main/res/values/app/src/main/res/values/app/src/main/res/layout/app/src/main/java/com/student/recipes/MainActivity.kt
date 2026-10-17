@@ -1,18 +1,22 @@
 package com.student.recipes
 
+import android.app.Activity
 import android.os.Bundle
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        val tvContent = findViewById<TextView>(R.id.tvContent)
+        val textView = TextView(this)
+        textView.textSize = 18f
+        textView.setPadding(32, 32, 32, 32)
+        
+        val content = """
+            Recipe App
+            ==================================
 
-        val recipeData = """
             Recipe: Lentil Soup
             Category: Soup
             Calories: 180 kcal
@@ -26,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             ----------------------------------
         """.trimIndent()
 
-        tvContent.text = recipeData
+        textView.text = content
+        setContentView(textView)
     }
 }
