@@ -11,10 +11,10 @@ class MainActivity : Activity() {
 
         val textView = TextView(this)
         textView.textSize = 18f
-        textView.setPadding(32, 32, 32, 32)
+        textView.setPadding(40, 40, 40, 40)
         
         val content = """
-            Recipe App
+            RECIPE APP
             ==================================
 
             Recipe: Lentil Soup
