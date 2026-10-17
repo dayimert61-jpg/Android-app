@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONArray
-import java.io.InputStream
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,15 +16,17 @@ class MainActivity : AppCompatActivity() {
         val tvContent = findViewById<TextView>(R.id.tvContent)
 
         try {
-            val inputStream: InputStream = assets.open("recipes.json")
-            val jsonString = inputStream.bufferedReader().use { it.readText() }
+            val jsonString = assets.open("recipes.json").use { inputStream ->
+                BufferedReader(InputStreamReader(inputStream)).use { it.readText() }
+            }
+            
             val jsonArray = JSONArray(jsonString)
-
             val builder = StringBuilder()
+
             for (i in 0 until jsonArray.length()) {
                 val obj = jsonArray.getJSONObject(i)
-                val name = obj.optString("name", "No name")
-                val category = obj.optString("category", "No category")
+                val name = obj.optString("name", "Bilinmeyen Tarif")
+                val category = obj.optString("category", "Genel")
                 val calories = obj.optInt("calories", 0)
                 val isVegan = obj.optBoolean("vegan", false)
 
@@ -37,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             tvContent.text = builder.toString()
         } catch (e: Exception) {
             e.printStackTrace()
-            tvContent.text = "Error loading recipes: ${e.message}"
+            tvContent.text = "Hata oluştu: ${e.localizedMessage}"
         }
     }
 }
