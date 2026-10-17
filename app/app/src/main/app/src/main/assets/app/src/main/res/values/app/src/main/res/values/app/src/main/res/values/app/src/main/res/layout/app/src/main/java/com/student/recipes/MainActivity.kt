@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity() {
             val builder = StringBuilder()
             for (i in 0 until jsonArray.length()) {
                 val obj = jsonArray.getJSONObject(i)
-                val name = obj.getString("name")
-                val category = obj.getString("category")
-                val calories = obj.getInt("calories")
-                val isVegan = obj.getBoolean("vegan")
+                val name = obj.optString("name", "No name")
+                val category = obj.optString("category", "No category")
+                val calories = obj.optInt("calories", 0)
+                val isVegan = obj.optBoolean("vegan", false)
 
                 builder.append("Recipe: ").append(name).append("\n")
                 builder.append("Category: ").append(category).append("\n")
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             tvContent.text = builder.toString()
         } catch (e: Exception) {
             e.printStackTrace()
-            tvContent.text = "Error loading recipes data."
+            tvContent.text = "Error loading recipes: ${e.message}"
         }
     }
 }
