@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Lentil Soup",
+    "category": "Soup",
+    "calories": 180,
+    "vegan": true,
+    "ingredients": ["red lentil", "onion", "carrot", "butter", "salt"]
+  },
+  {
+    "name": "Patates Terini",
+    "category": "Main Course",
+    "calories": 350,
+    "vegan": false,
+    "ingredients": ["minced meat", "potato", "onion", "olive oil", "spices"]
+  }
+]
